@@ -1,186 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine Page</title>
-<style>
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-    color: #fff;
-    text-align: center;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .container {
-    max-width: 600px;
-    padding: 40px;
-  }
-  .section { display: none; }
-  .active { display: block; }
-  .heart {
-    color: red;
-    font-size: 50px;
-    animation: beat 1s infinite;
-  }
-  @keyframes beat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-  }
-  button {
-    padding: 12px 25px;
-    margin: 10px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    transition: 0.3s;
-  }
-  .yes-btn { 
-    background-color: #ff5c5c; 
-    color: #fff; 
-  }
-  .yes-btn:hover {
-    background-color: #ff3333;
-    transform: scale(1.05);
-  }
-  .envelope {
-    font-size: 80px;
-    cursor: pointer;
-    animation: bounce 2s infinite;
-    display: inline-block;
-  }
-  @keyframes bounce {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-  }
-  h1 { font-family: 'Cursive', sans-serif; font-size: 48px; margin: 0; }
-  p { font-size: 18px; line-height: 1.5; }
-  input {
-    padding: 12px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    margin: 10px 0;
-    width: 80%;
-    box-sizing: border-box;
-  }
-  .message-box {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 30px;
-    border-radius: 15px;
-    margin-top: 20px;
-    font-size: 20px;
-  }
-  .edit-btn {
-    background-color: #4CAF50;
-    color: #fff;
-    font-size: 14px;
-    padding: 8px 15px;
-  }
-  .edit-btn:hover {
-    background-color: #45a049;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Page</title>
 </head>
 <body>
-<div class="container">
-  <!-- Password Form -->
-  <div id="passwordSection" class="section active">
-    <h1><span class="heart">❤️</span></h1>
-    <h2>Enter the Password:</h2>
-    <input type="password" id="passInput" placeholder="Enter password" onkeypress="handleKeyPress(event)">
-    <button class="yes-btn" onclick="checkPassword()">Submit</button>
-    <p id="passMsg"></p>
-  </div>
-
-  <!-- Envelope Section -->
-  <div id="envelopeSection" class="section">
-    <h1><span class="heart">❤️</span></h1>
-    <p>Click the envelope to open your message! <span class="envelope" onclick="openEnvelope()">✉️</span></p>
-  </div>
-
-  <!-- Message Section -->
-  <div id="messageSection" class="section">
-    <h1><span class="heart">❤️</span></h1>
-    <div class="message-box" id="messageBox">
-      <p id="customMessage">Your special message will appear here...</p>
-    </div>
-    <button class="edit-btn" onclick="editMessage()">Edit Message</button>
-  </div>
-
-  <!-- Edit Message Section -->
-  <div id="editSection" class="section">
-    <h1><span class="heart">❤️</span></h1>
-    <h2>Enter Your Message:</h2>
-    <textarea id="messageInput" placeholder="Type your special message here..." style="width: 90%; height: 200px; padding: 10px; border-radius: 5px; font-size: 16px; font-family: Arial;"></textarea>
-    <button class="yes-btn" onclick="saveMessage()">Save Message</button>
-  </div>
-</div>
-
-<script>
-  const PASSWORD = "4/24";
-
-  function checkPassword() {
-    const input = document.getElementById('passInput').value;
-    const msg = document.getElementById('passMsg');
-    
-    if (input === PASSWORD) {
-      msg.textContent = "";
-      document.getElementById('passwordSection').classList.remove('active');
-      document.getElementById('envelopeSection').classList.add('active');
-    } else {
-      msg.textContent = "❌ Wrong password! Try again.";
-      msg.style.color = "#ffcccc";
-    }
-  }
-
-  function handleKeyPress(event) {
-    if (event.key === 'Enter') {
-      checkPassword();
-    }
-  }
-
-  function openEnvelope() {
-    document.getElementById('envelopeSection').classList.remove('active');
-    document.getElementById('messageSection').classList.add('active');
-    loadMessage();
-  }
-
-  function loadMessage() {
-    const savedMessage = localStorage.getItem('valentineMessage');
-    if (savedMessage) {
-      document.getElementById('customMessage').textContent = savedMessage;
-    }
-  }
-
-  function editMessage() {
-    const currentMessage = document.getElementById('customMessage').textContent;
-    document.getElementById('messageInput').value = currentMessage;
-    document.getElementById('messageSection').classList.remove('active');
-    document.getElementById('editSection').classList.add('active');
-  }
-
-  function saveMessage() {
-    const message = document.getElementById('messageInput').value;
-    if (message.trim() === "") {
-      alert("Please enter a message!");
-      return;
-    }
-    localStorage.setItem('valentineMessage', message);
-    document.getElementById('customMessage').textContent = message;
-    document.getElementById('editSection').classList.remove('active');
-    document.getElementById('messageSection').classList.add('active');
-  }
-
-  window.onload = function() {
-    loadMessage();
-  };
-</script>
+    <h1>Welcome to the Valentine Page!</h1>
+    <nav>
+        <ul>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="song.html">Song</a></li>
+            <li><a href="timer.html">Timer</a></li>
+        </ul>
+    </nav>
+    <p>Enjoy your stay!</p>
 </body>
-    </html>
+</html>
